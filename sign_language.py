@@ -8,6 +8,7 @@ import matplotlib.image as mpimg
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
+from sklearn.preprocessing import StandardScaler
 import itertools
 
 from keras.utils.np_utils import to_categorical # convert to one-hot-encoding
@@ -35,7 +36,7 @@ for i in range(25):
     images.append(image)
 
 for ax, img in zip(axes.flat, images):
-    ax.imshow(img, interpolation='nearest')
+    ax.imshow(img, interpolation='nearest', cmap='GnBU')
     ax.axis('off')  # Turn off axis labels and ticks
 
 # Adjust spacing between subplots
@@ -82,6 +83,9 @@ def pxl_scale(imgData):
 
 scaledAll=pxl_scale(Xdata)
 
+scaler=StandardScaler()
+skScaledData=scaler.fit_transform(Xdata[0])
+
 fig, axes = plt.subplots(5, 5, figsize=(64, 64))
 
 images=[]
@@ -120,3 +124,4 @@ maxValNorm=np.max(scaledAll[0])
 
 print(maxValOG)
 print(maxValNorm)
+print(skScaledData)
