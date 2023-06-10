@@ -36,14 +36,14 @@ for i in range(25):
     images.append(image)
 
 for ax, img in zip(axes.flat, images):
-    ax.imshow(img, interpolation='nearest', cmap='GnBU')
+    ax.imshow(img, interpolation='nearest', cmap='bone')
     ax.axis('off')  # Turn off axis labels and ticks
 
 # Adjust spacing between subplots
 plt.tight_layout()
 
 # Display the plot
-plt.show(block=False)
+plt.show()
 
 X_train, X_test, y_train, y_test = train_test_split(Xdata, Ydata, test_size=0.33, random_state=42)
 
@@ -66,9 +66,9 @@ widths=[size[0] for size in image_sizes]
 heights=[size[1] for size in image_sizes]
 
 plt.hist(widths)
-plt.show(block=False)
+plt.show()
 plt.hist(heights)
-plt.show(block=False)
+plt.show()
 
 #scale pixel values to a smaller range to improve convergence
 scaledAll = []
@@ -80,11 +80,7 @@ def pxl_scale(imgData):
         scaledAll.append(scaledImg)
     return scaledAll
 
-
 scaledAll=pxl_scale(Xdata)
-
-scaler=StandardScaler()
-skScaledData=scaler.fit_transform(Xdata[0])
 
 fig, axes = plt.subplots(5, 5, figsize=(64, 64))
 
@@ -94,7 +90,7 @@ for i in range(25):
     images.append(image)
 
 for ax, img in zip(axes.flat, images):
-    ax.imshow(img, interpolation='nearest')
+    ax.imshow(img, interpolation='nearest', cmap='bone')
     ax.axis('off')  # Turn off axis labels and ticks
 
 # Adjust spacing between subplots
@@ -124,4 +120,5 @@ maxValNorm=np.max(scaledAll[0])
 
 print(maxValOG)
 print(maxValNorm)
-print(skScaledData)
+
+#from pixel intensity plot it can be seen that pixels were already within a normalized range, so further scaling may be redundant.
