@@ -53,9 +53,11 @@ print(y_train.shape)
 print(y_test.shape)
 
 g = sns.countplot(y_train)
-plt.show(block=False)
+plt.show()
 
 print(Xdata.shape)
+print(X_train[0].shape)
+print(X_train[0])
 
 image_sizes=[]
 for i, sub in enumerate(Xdata):
@@ -122,3 +124,11 @@ print(maxValOG)
 print(maxValNorm)
 
 #from pixel intensity plot it can be seen that pixels were already within a normalized range, so further scaling may be redundant.
+
+#Reshape data with height=64, width=64, and 3rd dimension = 1: 28x28x1
+#Keras required 3rd dimension to correspond to channels. 
+
+X_train=X_train.values.reshape(-1, 64, 64, 1)
+X_test=X_test.values.reshape(-1, 28, 28, 1)
+print(X_train[0].shape)
+print(X_test[0].shape)
