@@ -128,7 +128,16 @@ print(maxValNorm)
 #Reshape data with height=64, width=64, and 3rd dimension = 1: 28x28x1
 #Keras required 3rd dimension to correspond to channels. 
 
-X_train=X_train.values.reshape(-1, 64, 64, 1)
-X_test=X_test.values.reshape(-1, 28, 28, 1)
-print(X_train[0].shape)
-print(X_test[0].shape)
+#X_train_df=pd.DataFrame(X_train)
+#X_test_df=pd.DataFrame(X_test)
+
+##TO BE FIXED:
+#for i, sub in enumerate(X_train):
+#    X_train[i]=X_train[i].reshape(-1, 64, 64, 1)
+#for i, sub in enumerate(X_test):
+#    X_test[i]=X_test[i].reshape(-1, 28, 28, 1)
+#print(X_train[0].shape)
+#print(X_test_df[0].shape)
+
+#One-hot encoding
+y_train=to_categorical(y_train, num_classes=10)
